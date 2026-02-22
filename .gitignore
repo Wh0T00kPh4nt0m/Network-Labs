@@ -1,0 +1,18 @@
+# Ignore environment variables (API Keys, Passwords)
+.env
+auth.json
+secrets.txt
+
+# Ignore huge packet captures (keep these local)
+*.pcap
+*.pcapng
+*.cap
+
+# Ignore Virtual Machine disks (don't push 20GB files!)
+*.vmdk
+*.vdi
+*.ova
+*.iso
+
+# Ignore Logs (unless they are small samples for the lab)
+*.log
