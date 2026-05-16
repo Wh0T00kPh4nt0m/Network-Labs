@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<lab name="Multi-vendor firewalls" version="1" scripttimeout="300" lock="0">
+  <description>Practicing different syntax for different firewalls</description>
+  <topology>
+    <nodes>
+      <node id="1" name="PaloAlto" type="qemu" template="paloalto" image="paloalto-10.0.4-Pre-Licensed-Eval" console="vnc" cpu="2" cpulimit="0" ram="4096" ethernet="4" uuid="8dd10b7e-a21d-4f8e-a4d9-39c25baf4252" qemu_options="-machine type=pc,accel=kvm -nographic -rtc base=utc -cpu host" qemu_version="2.12.0" qemu_arch="x86_64" delay="0" icon="Firewall-2D-PA-S.svg" config="0" left="633" top="672">
+        <interface id="1" name="eth1/1" type="ethernet" network_id="8"/>
+        <interface id="2" name="eth1/2" type="ethernet" network_id="12"/>
+      </node>
+      <node id="2" name="vSRX-NG" type="qemu" template="vsrxng" image="vsrxng-20.4R3-S1.3" console="telnet" cpu="2" cpulimit="0" ram="4096" ethernet="4" uuid="355a184c-0373-4e1b-ac5b-1c77c98fc6ce" qemu_options="-machine type=pc,accel=kvm -cpu host -serial mon:stdio -nographic -no-user-config -nodefaults -rtc base=utc" qemu_version="4.1.0" qemu_arch="x86_64" qemu_nic="virtio-net-pci" delay="0" icon="Juniper-2D-VSRX-S.svg" config="0" left="369" top="384">
+        <interface id="1" name="ge-0/0/0" type="ethernet" network_id="16"/>
+        <interface id="2" name="ge-0/0/1" type="ethernet" network_id="18"/>
+      </node>
+      <node id="3" name="FirePower" type="qemu" template="firepower6" image="firepower6-FTD-7.0" console="vnc" cpu="4" cpulimit="0" ram="8192" ethernet="5" uuid="93d0b369-ef33-4e18-8412-9788db98842c" firstmac="00:50:00:00:03:00" qemu_options="-machine type=pc,accel=kvm -serial none -nographic -no-user-config -nodefaults -display none -vga std -rtc base=utc -cpu host" qemu_version="4.1.0" qemu_arch="x86_64" delay="0" icon="Server-2D-Generic-S.svg" config="0" left="531" top="396">
+        <interface id="1" name="G0/0" type="ethernet" network_id="15"/>
+        <interface id="2" name="G0/1" type="ethernet" network_id="17"/>
+      </node>
+      <node id="4" name="Fortinet" type="qemu" template="fortinet" image="fortinet-FGT-v7.0.10.M-build0450" console="telnet" cpu="1" cpulimit="0" ram="1024" ethernet="4" uuid="3cd31034-367a-4766-99fe-655690268aab" qemu_options="-machine type=pc,accel=kvm -serial mon:stdio -nographic -no-user-config -nodefaults -display none -vga std -rtc base=utc" qemu_version="4.1.0" qemu_arch="x86_64" qemu_nic="virtio-net-pci" delay="0" icon="Firewall-2D-FGT-S.svg" config="0" left="330" top="111">
+        <interface id="0" name="port1" type="ethernet" network_id="2"/>
+        <interface id="1" name="port2" type="ethernet" network_id="3"/>
+      </node>
+      <node id="5" name="HUSG6000v" type="qemu" template="huaweiusg6kv" image="huaweiusg6kv-WAF5k-V200R001C00" console="vnc" cpu="2" cpulimit="0" ram="4096" ethernet="6" uuid="ef3f8f33-dddb-4cbf-aaf9-349545e91320" qemu_options="-machine type=pc,accel=kvm -vga std -usbdevice tablet -boot order=cd" qemu_version="4.1.0" qemu_arch="x86_64" qemu_nic="virtio-net-pci" delay="0" icon="Firewall-2D-Generic-S.svg" config="0" left="759" top="399">
+        <interface id="1" name="G1/0/0" type="ethernet" network_id="13"/>
+        <interface id="2" name="G1/0/1" type="ethernet" network_id="19"/>
+      </node>
+      <node id="6" name="SophosXG" type="qemu" template="sophosxg" image="sophosxg-fw-20.0.0_GA.KVM-222" console="vnc" cpu="1" cpulimit="0" ram="2048" ethernet="4" uuid="025a364b-3deb-4def-a802-1820709cf8ec" qemu_options="-machine type=pc,accel=kvm -vga std -usbdevice tablet -boot order=cd" qemu_version="2.12.0" qemu_arch="x86_64" qemu_nic="virtio-net-pci" delay="0" icon="Firewall-2D-Sophos-S.svg" config="0" left="963" top="111">
+        <interface id="0" name="PortA" type="ethernet" network_id="4"/>
+        <interface id="1" name="PortB" type="ethernet" network_id="5"/>
+      </node>
+      <node id="7" name="CP" type="qemu" template="cpsg" image="cpsg-r80.40" console="telnet" cpu="4" cpulimit="0" ram="6144" ethernet="4" uuid="a0722153-afa2-4867-923c-b8075c229b51" qemu_options="-machine type=pc,accel=kvm -serial mon:stdio -nographic -no-user-config -nodefaults -display none -vga std -rtc base=utc" qemu_version="2.12.0" qemu_arch="x86_64" delay="0" icon="Firewall-2D-CP-S.svg" config="0" left="897" top="384">
+        <interface id="0" name="eth0" type="ethernet" network_id="14"/>
+        <interface id="1" name="eth1" type="ethernet" network_id="21"/>
+      </node>
+      <node id="8" name="VPC" type="vpcs" template="vpcs" image="" ethernet="1" delay="0" icon="PC-2D-Desktop-Generic-S.svg" config="0" left="123" top="51">
+        <interface id="0" name="eth0" type="ethernet" network_id="1"/>
+      </node>
+      <node id="9" name="VPC" type="vpcs" template="vpcs" image="" ethernet="1" delay="0" icon="PC-2D-Desktop-Generic-S.svg" config="0" left="1179" top="57">
+        <interface id="0" name="eth0" type="ethernet" network_id="6"/>
+      </node>
+      <node id="10" name="vIOS10" type="qemu" template="vios" image="vios-adventerprisek9-m.SPA.159-3.M6" console="telnet" cpu="1" cpulimit="0" ram="1024" ethernet="4" uuid="9bf7aa8e-adff-4fab-a345-336c20ea489d" qemu_options="-machine type=pc,accel=kvm -serial mon:stdio -nographic -no-user-config -nodefaults -rtc base=utc -cpu host" qemu_version="2.4.0" qemu_arch="x86_64" delay="0" icon="Router-2D-Gen-White-S.svg" config="0" left="624" top="105">
+        <interface id="0" name="Gi0/0" type="ethernet" network_id="3"/>
+        <interface id="1" name="Gi0/1" type="ethernet" network_id="4"/>
+        <interface id="2" name="Gi0/2" type="ethernet" network_id="20"/>
+      </node>
+      <node id="11" name="vIOS11" type="qemu" template="vios" image="vios-adventerprisek9-m.SPA.159-3.M6" console="telnet" cpu="1" cpulimit="0" ram="1024" ethernet="8" uuid="a30476ff-e98c-4c33-8c7d-6331632e9e0b" qemu_options="-machine type=pc,accel=kvm -serial mon:stdio -nographic -no-user-config -nodefaults -rtc base=utc -cpu host" qemu_version="2.4.0" qemu_arch="x86_64" delay="0" icon="Router-2D-Gen-White-S.svg" config="0" left="627" top="306">
+        <interface id="0" name="Gi0/0" type="ethernet" network_id="20"/>
+        <interface id="1" name="Gi0/1" type="ethernet" network_id="17"/>
+        <interface id="2" name="Gi0/2" type="ethernet" network_id="18"/>
+        <interface id="3" name="Gi0/3" type="ethernet" network_id="19"/>
+        <interface id="4" name="Gi0/4" type="ethernet" network_id="21"/>
+      </node>
+      <node id="12" name="Switch12" type="qemu" template="viosl2" image="viosl2-adventerprisek9-m-v152_6_0_81_e-20190423" console="telnet" cpu="1" cpulimit="0" ram="1024" ethernet="8" uuid="bfd271d0-a891-44a2-98b2-9cb4f16f5ce7" qemu_options="-machine type=pc,accel=kvm -serial mon:stdio -nographic -no-user-config -nodefaults -rtc base=utc -cpu host" qemu_version="2.4.0" qemu_arch="x86_64" delay="0" icon="Switch-2D-L3-Generic-S.svg" config="0" left="225" top="105">
+        <interface id="0" name="Gi0/0" type="ethernet" network_id="2"/>
+        <interface id="1" name="Gi0/1" type="ethernet" network_id="1"/>
+      </node>
+      <node id="13" name="Switch13" type="qemu" template="viosl2" image="viosl2-adventerprisek9-m-v152_6_0_81_e-20190423" console="telnet" cpu="1" cpulimit="0" ram="1024" ethernet="8" uuid="bff22f2d-640c-454d-8a1c-9d7194dc5c41" qemu_options="-machine type=pc,accel=kvm -serial mon:stdio -nographic -no-user-config -nodefaults -rtc base=utc -cpu host" qemu_version="2.4.0" qemu_arch="x86_64" delay="0" icon="Switch-2D-L3-Generic-S.svg" config="0" left="1092" top="105">
+        <interface id="0" name="Gi0/0" type="ethernet" network_id="6"/>
+        <interface id="1" name="Gi0/1" type="ethernet" network_id="5"/>
+      </node>
+      <node id="14" name="Switch" type="qemu" template="viosl2" image="viosl2-adventerprisek9-m-v152_6_0_81_e-20190423" console="telnet" cpu="1" cpulimit="0" ram="1024" ethernet="8" uuid="a3494b7c-a0f1-446a-8be1-7e9f026d07db" qemu_options="-machine type=pc,accel=kvm -serial mon:stdio -nographic -no-user-config -nodefaults -rtc base=utc -cpu host" qemu_version="2.4.0" qemu_arch="x86_64" delay="0" icon="Switch-2D-L3-Generic-S.svg" config="0" left="633" top="810">
+        <interface id="0" name="Gi0/0" type="ethernet" network_id="8"/>
+        <interface id="1" name="Gi0/1" type="ethernet" network_id="7"/>
+        <interface id="2" name="Gi0/2" type="ethernet" network_id="9"/>
+        <interface id="3" name="Gi0/3" type="ethernet" network_id="10"/>
+        <interface id="4" name="Gi1/0" type="ethernet" network_id="11"/>
+      </node>
+      <node id="15" name="VPC15" type="vpcs" template="vpcs" image="" ethernet="1" delay="0" icon="PC-2D-Desktop-Generic-S.svg" config="0" left="414" top="777">
+        <interface id="0" name="eth0" type="ethernet" network_id="7"/>
+      </node>
+      <node id="16" name="VPC16" type="vpcs" template="vpcs" image="" ethernet="1" delay="0" icon="PC-2D-Desktop-Generic-S.svg" config="0" left="420" top="864">
+        <interface id="0" name="eth0" type="ethernet" network_id="9"/>
+      </node>
+      <node id="17" name="VPC17" type="vpcs" template="vpcs" image="" ethernet="1" delay="0" icon="PC-2D-Desktop-Generic-S.svg" config="0" left="786" top="768">
+        <interface id="0" name="eth0" type="ethernet" network_id="10"/>
+      </node>
+      <node id="18" name="VPC18" type="vpcs" template="vpcs" image="" ethernet="1" delay="0" icon="PC-2D-Desktop-Generic-S.svg" config="0" left="786" top="864">
+        <interface id="0" name="eth0" type="ethernet" network_id="11"/>
+      </node>
+      <node id="19" name="Switch" type="qemu" template="viosl2" image="viosl2-adventerprisek9-m-v152_6_0_81_e-20190423" console="telnet" cpu="1" cpulimit="0" ram="1024" ethernet="8" uuid="e3369aa1-37a1-42b8-964f-b7ab18daeff8" qemu_options="-machine type=pc,accel=kvm -serial mon:stdio -nographic -no-user-config -nodefaults -rtc base=utc -cpu host" qemu_version="2.4.0" qemu_arch="x86_64" delay="0" icon="Switch-2D-L3-Generic-S.svg" config="0" left="636" top="546">
+        <interface id="0" name="Gi0/0" type="ethernet" network_id="12"/>
+        <interface id="1" name="Gi0/1" type="ethernet" network_id="13"/>
+        <interface id="2" name="Gi0/2" type="ethernet" network_id="14"/>
+        <interface id="3" name="Gi0/3" type="ethernet" network_id="15"/>
+        <interface id="4" name="Gi1/0" type="ethernet" network_id="16"/>
+      </node>
+    </nodes>
+    <networks>
+      <network id="1" type="bridge" name="Net-VPCiface_0" left="183" top="91" visibility="0" icon="lan.png"/>
+      <network id="2" type="bridge" name="Net-Switch12iface_0" left="285" top="145" visibility="0" icon="lan.png"/>
+      <network id="3" type="bridge" name="Net-Fortinetiface_1" left="390" top="151" visibility="0" icon="lan.png"/>
+      <network id="4" type="bridge" name="Net-vIOS10iface_1" left="684" top="145" visibility="0" icon="lan.png"/>
+      <network id="5" type="bridge" name="Net-SophosXGiface_1" left="1023" top="151" visibility="0" icon="lan.png"/>
+      <network id="6" type="bridge" name="Net-VPCiface_0" left="1239" top="97" visibility="0" icon="lan.png"/>
+      <network id="7" type="bridge" name="Net-VPC15iface_0" left="474" top="817" visibility="0" icon="lan.png"/>
+      <network id="8" type="bridge" name="Net-Switchiface_0" left="693" top="850" visibility="0" icon="lan.png"/>
+      <network id="9" type="bridge" name="Net-VPC16iface_0" left="480" top="904" visibility="0" icon="lan.png"/>
+      <network id="10" type="bridge" name="Net-VPC17iface_0" left="846" top="808" visibility="0" icon="lan.png"/>
+      <network id="11" type="bridge" name="Net-VPC18iface_0" left="846" top="904" visibility="0" icon="lan.png"/>
+      <network id="12" type="bridge" name="Net-PaloAltoiface_2" left="690" top="745" visibility="0" icon="lan.png"/>
+      <network id="14" type="bridge" name="Net-CPiface_0" left="894" top="481" visibility="0" icon="lan.png"/>
+      <network id="13" type="bridge" name="Net-HUSG6000viface_1" left="771" top="478" visibility="0" icon="lan.png"/>
+      <network id="15" type="bridge" name="Net-FirePoweriface_1" left="624" top="472" visibility="0" icon="lan.png"/>
+      <network id="16" type="bridge" name="Net-vSRX-NGiface_1" left="516" top="481" visibility="0" icon="lan.png"/>
+      <network id="17" type="bridge" name="Net-FirePoweriface_2" left="585" top="415" visibility="0" icon="lan.png"/>
+      <network id="18" type="bridge" name="Net-vSRX-NGiface_2" left="429" top="424" visibility="0" icon="lan.png"/>
+      <network id="19" type="bridge" name="Net-HUSG6000viface_2" left="798" top="421" visibility="0" icon="lan.png"/>
+      <network id="20" type="bridge" name="Net-vIOS11iface_0" left="687" top="346" visibility="0" icon="lan.png"/>
+      <network id="21" type="bridge" name="Net-CPiface_1" left="957" top="424" visibility="0" icon="lan.png"/>
+    </networks>
+  </topology>
+</lab>
